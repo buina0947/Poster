@@ -11,11 +11,11 @@ To install Angular, follow these steps:
 - Install Angular CLI: Execute the following command to install the Angular CLI globally:
 ```npm install -g @angular/cli```
 
-# 3. Initiate the backend
+# 3. Initiate the backend (Node.js&Express.js)
 In the Backend folder, execute the following command to start the backend server:
 ```node app.js```
 
-# 4. Initiate the frontend
+# 4. Initiate the frontend (Angular)
 In the Frontend folder, execute the following command to start the Angular development server:
 ```npm start```
 This will launch the Angular application on your local machine, which should connect to the running backend server.
