@@ -13,37 +13,16 @@ export class CreatePostComponent {
 
   currentPost: any = {};
   isEditing: boolean = false;
-
+  
   constructor(private http: HttpClient) {}
-
-  editPost(post: any) {
-    this.currentPost = { ...post };
-    this.isEditing = true;
-  }
-
-  removePost(post: any) {
-    const isConfirmed = confirm('Are you sure you want to remove this post?');
-    if (isConfirmed) {
-      this.posts.splice(this.posts.indexOf(post), 1);
-      this.postSubmitted.emit({ type: 'remove', data: post });
-
-      // Add HTTP request to delete post on the server
-      this.http.delete(`http://localhost:3000/posts/${post._id}`).subscribe(
-        () => console.log('Post deleted successfully on the server.'),
-        (error) => console.error('Error deleting post on the server:', error)
-      );
-    }
-  }
 
   submitForm() {
     if (this.isEditing) {
-      // Add HTTP request to update post on the server
       this.http.put(`http://localhost:3000/posts/${this.currentPost._id}`, this.currentPost).subscribe(
         () => console.log('Post updated successfully on the server.'),
         (error) => console.error('Error updating post on the server:', error)
       );
     } else {
-      // Add HTTP request to create post on the server
       this.http.post('http://localhost:3000/posts', this.currentPost).subscribe(
         (response: any) => {
           console.log('Post created successfully on the server.');

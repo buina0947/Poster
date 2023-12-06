@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { Post } from 'src/app/interface/post';
 
@@ -9,73 +10,62 @@ import { Post } from 'src/app/interface/post';
 export class PostComponent {
   @Input() post!: Post;
   editMode = false;
-  editedPost: Post = {} as Post; // Use Post type for editedPost
+  editedPost: Post = {} as Post;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   toggleEditMode() {
     if (this.editMode) {
-      // Save changes and exit edit mode
-      this.post.title = this.editedPost.title;
-      this.post.description = this.editedPost.description;
-      this.post.author = this.editedPost.author;
+      this.updatePost();
     } else {
-      // Enter edit mode
-      // Copy values from post to editedPost
-      this.editedPost = { ...this.post };
+      this.copyPostData();
     }
 
     this.editMode = !this.editMode;
   }
 
-  removePost() {
-    console.log('Clicked to remove post:', this.post._id);
-
-    // Implement post removal logic here, possibly using an API call
+  removePost(id: string) {
+    const postId = id;
+    console.log('Clicked to remove post:', postId);
+    const apiUrl = `http://localhost:3000/posts/${postId}`;
+    
+    this.http.delete(apiUrl).subscribe(
+      (response) => {
+        console.log('Post deleted successfully:', response);
+      },
+      (error) => {
+        console.error('Error deleting post:', error);
+      }
+    );
   }
 
   async save() {
-    // Update post data
-    this.post.title = this.editedPost.title;
-    this.post.description = this.editedPost.description;
-    this.post.author = this.editedPost.author;
+    this.updatePostOnServer();
+    this.editMode = false;
+  }
 
-    // // Prepare updated post data for API call
-    // const updatedPostData: Post = {
-    //   _id: this.post._id, // Include the post ID
-    //   title: this.post.title,
-    //   description: this.post.description,
-    //   author: this.post.author,
-    // };
-    
+  private copyPostData() {
+    this.editedPost = { ...this.post };
+  }
 
- 
+  private updatePost() {
+    this.post = { ...this.editedPost };
+  }
 
-    // Send updated post data to the backend API
+  private async updatePostOnServer() {
     const apiUrl = `http://localhost:3000/posts/${this.post._id}`;
-console.log("Will sed:", this.post)
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.post),
-      });
+    console.log('Will send:', this.post);
 
-      if (response.ok) {
-        const data: Post = await response.json();
-        console.log('Updated post response:', data);
-        // Handle successful response
+    try {
+      const response = await this.http.put(apiUrl, this.post).toPromise();
+
+      if (response) {
+        console.log('Updated post response:', response);
       } else {
-        console.error('Error updating post:', response.statusText);
-        // Handle error response
+        console.error('Error updating post:', 'Server did not respond properly');
       }
     } catch (error) {
       console.error('Error updating post:', error);
-      // Handle network error or other exceptions
     }
-
-    this.editMode = false;
   }
 }

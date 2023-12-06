@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PostServiceService {
 
-  private baseUrl = 'http://localhost:3000'; // Update the URL accordingly
+  private baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 

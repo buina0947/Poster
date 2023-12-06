@@ -13,14 +13,17 @@ export class ListOfPostsComponent implements OnInit {
   constructor(private postService: PostServiceService) { }
 
   ngOnInit(): void {
+    this.initPosts();
+  }
+
+  initPosts() {
     this.postService.getPosts().subscribe(
-      (data: Post[]) => { // Specify the type of 'data' as Post[]
+      (data: Post[]) => {
         this.posts = data;
         console.log(data);
       },
       (error) => {
         console.error(error);
-        // Handle error as needed
       }
     );
   }

@@ -1,5 +1,3 @@
-<div *ngFor="let post of posts">
-    <app-post
-    [post]="post"
-    ></app-post>
-  </div>
+<ng-container *ngFor="let post of posts">
+  <app-post [post]="post"></app-post>
+</ng-container>
