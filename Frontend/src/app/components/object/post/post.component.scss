@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.post-container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-info div {
+    margin-bottom: 10px;
+}
+
+.post-info label {
+    font-weight: bold;
+}
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.edit-button,
+.remove-button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-button:hover,
+.remove-button:hover {
+    background-color: #45a049;
+}

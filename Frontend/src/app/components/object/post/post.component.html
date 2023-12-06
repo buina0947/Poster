@@ -1,0 +1,41 @@
+<div class="post-container">
+    <div class="post-info" *ngIf="!editMode; else editModeTemplate">
+        <div>
+            <label for="postTitle">Post Title:</label>
+            <span id="postTitle">{{ post.title }}</span>
+        </div>
+        <div>
+            <label for="postDescription">Description:</label>
+            <span id="postDescription">{{ post.description }}</span>
+        </div>
+        <div>
+            <label for="postAuthor">Author:</label>
+            <span id="postAuthor">{{ post.author }}</span>
+        </div>
+    </div>
+
+    <ng-template #editModeTemplate>
+        <p>Post id: {{post.id}}</p>
+        <div>
+            <label for="editPostTitle">Post Title:</label>
+            <input id="editPostTitle" [(ngModel)]="editedPost.title" />
+        </div>
+        <div>
+            <label for="editPostDescription">Description:</label>
+            <input id="editPostDescription" [(ngModel)]="editedPost.description" />
+        </div>
+        <div>
+            <label for="editPostAuthor">Author:</label>
+            <input id="editPostAuthor" [(ngModel)]="editedPost.author" />
+        </div>
+        <div>   
+        </div>
+    </ng-template>
+
+    <div class="post-actions">
+        <button class="save-button" *ngIf="editMode" (click)="save()">Save</button>
+        <button class="edit-button" *ngIf="!editMode" (click)="toggleEditMode()">Edit</button>
+        <button class="remove-button" *ngIf="!editMode" (click)="removePost()">Remove</button>
+        <button class="edit-button" *ngIf="editMode" (click)="toggleEditMode()">Cancel</button>
+    </div>
+</div>

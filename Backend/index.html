@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Posts Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        #post-list {
+            width: 60%;
+            margin: 0 auto;
+        }
+        .post {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .post-title {
+            font-size: 20px;
+        }
+        .post-description {
+            font-size: 14px;
+        }
+        .post-author {
+            font-size: 12px;
+            color: #666;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task 1. Posts Management Page</h1>
+    <div id="post-list">
+        <div class="post">
+            <div class="post-title">Post 1 Title</div>
+            <div class="post-description">This is the description for the first post.</div>
+            <div class="post-author">Author: John Doe</div>
+            <button>Edit</button>
+            <button>Delete</button>
+        </div>
+        <div class="post">
+            <div class="post-title">Post 2 Title</div>
+            <div class="post-description">This is the description for the second post.</div>
+            <div class="post-author">Author: Jane Smith</div>
+            <button>Edit</button>
+            <button>Delete</button>
+        </div>
+        <!-- Add more posts here -->
+    </div>
+    <div>
+        <h2>Create New Post</h2>
+        <form id="post-form">
+            <div>
+                <label for="post-title">Post Title:</label>
+                <input type="text" id="post-title" name="post-title">
+            </div>
+            <div>
+                <label for="post-description">Description:</label>
+                <textarea id="post-description" name="post-description"></textarea>
+            </div>
+            <div>
+                <label for="post-author">Author:</label>
+                <input type="text" id="post-author" name="post-author">
+            </div>
+            <div>
+                <button type="submit">Create Post</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

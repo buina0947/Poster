@@ -1,0 +1,12 @@
+<div>
+  <label for="postTitle">Post Title:</label>
+  <input id="postTitle" [(ngModel)]="data.postTitle" />
+
+  <label for="postDescription">Description:</label>
+  <input id="postDescription" [(ngModel)]="data.postDescription" />
+
+  <label for="postAuthor">Author:</label>
+  <input id="postAuthor" [(ngModel)]="data.postAuthor" />
+
+  <button (click)="closeDialog()">Submit</button>
+</div>
